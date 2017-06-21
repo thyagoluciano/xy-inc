@@ -9,7 +9,7 @@ xy-inc - Backend as a Service
  * Mongoose
  * Mocha
  * Chai
- * Instalbul
+ * Istanbul
  * Docker
 
 ### Pré-requisitos para executar
