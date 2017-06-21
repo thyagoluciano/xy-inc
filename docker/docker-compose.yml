@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  lb:
+    build:
+      context: ./lb
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
+    container_name: lb-xyz-inc
+
+  api:
+    build:
+      context: ./api
+    labels:
+      api_zy_inc: "true"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - MONGODB_URL=mongodb://xy-inc-mongodb/xy_inc
+      - REDIS_HOST=xy-inc-reddis
+      - REDIS_PORT=6379
+    ports:
+      - 3000
+    depends_on:
+      - lb
+      - reddis
+      - mongodb
+
+  reddis:
+    image: redis
+    volumes:
+      - ./data/reddis:/data
+    ports:
+      - 9090:8080
+      - 6379:6379
+    container_name: xy-inc-reddis
+
+  mongodb:
+    image: mongo
+    volumes:
+      - ./data/mongodb:/data/db
+    ports:
+      - 28017:28017
+      - 27017:27017
+    container_name: xy-inc-mongodb

@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  api_integration:
+    build:
+      context: ./api
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - MONGODB_URL=mongodb://xy-inc-mongodb-integration/xy_inc_test
+      - REDIS_HOST=xy-inc-reddis-integration
+      - REDIS_PORT=6379
+    depends_on:
+      - reddis_integration
+      - mongodb_integration
+    command: bash -c "cd /app/xy-inc && npm run test:integration-cover"
+    container_name: xy-inc-api-integration
+
+  reddis_integration:
+    image: redis
+    container_name: xy-inc-reddis-integration
+
+  mongodb_integration:
+    image: mongo
+    container_name: xy-inc-mongodb-integration

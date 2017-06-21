@@ -1,0 +1,56 @@
+{
+  "name": "xy-inc",
+  "version": "1.0.0",
+  "description": "Zup Backend as a Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js --exec babel-node",
+    "start1": "NODE_PORT=3001 nodemon ./server.js --exec babel-node",
+    "test:integration": "NODE_ENV=test mocha --opts test/integration/mocha.opts test/integration/**/*.spec.js",
+    "test:unit": "NODE_ENV=test mocha --opts test/unit/mocha.opts test/unit/**/*.spec.js",
+    "test:integration-cover": "NODE_ENV=test istanbul cover --dir test/coverage/integration _mocha -- ./test/integration/**/*.spec.js --opts ./test/integration/mocha.opts -R spec",
+    "test:unit-cover": "NODE_ENV=test istanbul cover --dir test/coverage/unit _mocha --  ./test/unit/**/*.spec.js --opts ./test/unit/mocha.opts -R spec",
+    "test": "NODE_ENV=test npm run test:unit && npm run test:integration"
+  },
+  "keywords": [
+    "baas",
+    "zup",
+    "xy-inc",
+    "node",
+    "mongo",
+    "mongoose",
+    "express"
+  ],
+  "author": "Thyago Luciano <thyagoluciano@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-node6": "^11.0.0",
+    "chai": "^4.0.2",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.1.0",
+    "isparta": "^4.0.0",
+    "istanbul": "^1.0.0-alpha.2",
+    "istanbul-merge": "^1.1.1",
+    "mocha": "^3.4.2",
+    "sinon": "^2.3.4",
+    "sinon-as-promised": "^4.0.3",
+    "supertest": "^3.0.0",
+    "testdouble": "^3.0.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.6.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "logger": "0.0.1",
+    "method-override": "^2.3.9",
+    "mongo-sanitize": "^1.0.0",
+    "mongoose": "^4.10.6",
+    "morgan": "^1.8.2",
+    "redis": "^2.7.1"
+  }
+}

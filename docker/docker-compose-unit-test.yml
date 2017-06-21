@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  api_unit:
+    build:
+      context: ./api
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - MONGODB_URL=mongodb://xy-inc-mongodb/xy_inc_test
+      - REDIS_HOST=xy-inc-reddis
+      - REDIS_PORT=6379
+    ports:
+      - 3000
+    command: bash -c "cd /app/xy-inc && npm run test:unit-cover"
+    container_name: xy-inc-api-unit
