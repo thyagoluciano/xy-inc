@@ -10,6 +10,7 @@
     "test:unit": "NODE_ENV=test mocha --opts test/unit/mocha.opts test/unit/**/*.spec.js",
     "test:integration-cover": "NODE_ENV=test istanbul cover --dir test/coverage/integration _mocha -- ./test/integration/**/*.spec.js --opts ./test/integration/mocha.opts -R spec",
     "test:unit-cover": "NODE_ENV=test istanbul cover --dir test/coverage/unit _mocha --  ./test/unit/**/*.spec.js --opts ./test/unit/mocha.opts -R spec",
+    "test-with-coverage": "NODE_ENV=test istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "test": "NODE_ENV=test npm run test:unit && npm run test:integration"
   },
   "keywords": [
